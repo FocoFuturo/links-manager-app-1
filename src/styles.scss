@@ -1,0 +1,53 @@
+@import "./styles/typography";
+@import "./styles/form";
+@import "./styles/utils";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 100%;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+.container-flex {
+  height: calc(100% - 64px); // menos a altura da toolbar
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 1rem;
+}
+
+.button-new {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 99;
+}
+
+@media only screen and (max-width: 640px) {
+  .container {
+    padding-bottom: 4rem;
+  }
+
+  .button-new {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
