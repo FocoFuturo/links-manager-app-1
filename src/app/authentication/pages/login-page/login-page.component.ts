@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ConfirmationService } from '@core/services';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
   form = this.formBuild.group({
@@ -21,16 +22,23 @@ export class LoginPageComponent implements OnInit {
 
   showPassword = false;
 
-  constructor(private formBuild: FormBuilder) { }
+  constructor(
+    private formBuild: FormBuilder,
+    private confirmation: ConfirmationService
+  ) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
     console.log(this.form.value);
+    this.confirmation
+      .confirmDelete('1 - Nome do item')
+      .subscribe((confirmed) => {
+        console.log('Usuário confirmou?', confirmed);
+      });
   }
 
-  
-handleShowPassword(): void {
-  this.showPassword = !this.showPassword;
-}
+  handleShowPassword(): void {
+    this.showPassword = !this.showPassword;
+  }
 }
